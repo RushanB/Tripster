@@ -17,7 +17,6 @@
         </activity>
         <activity android:name=".Home" />
         <activity android:name=".Menu" />
-        <activity android:name=".AddBudget" />
         <activity android:name=".MyPlaces" />
         <activity android:name=".AddPlaces" />
         <activity android:name=".MyBudget" />
