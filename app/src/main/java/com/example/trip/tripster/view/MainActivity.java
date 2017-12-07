@@ -5,26 +5,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.widget.AbsListView;
 
 import com.example.trip.tripster.R;
+import com.example.trip.tripster.model.Trip;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-     SearchView searchView;
+public class MainActivity extends AppCompatActivity implements AbsListView.RecyclerListener {
 
+    public static final String file = "trips";
+    private Trips trips;
+    private String tripNameId = "TripName";
+    private String tripBudgetId = "TripBudget";
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter recyclerAdapter;
+    private int adapterPosition;
+    private ArrayList<Trip> tripArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        SearchView searchView = (SearchView) findViewById(R.id.searchPlaces);
-//        searchView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(this, AddPlaces.class);
-//                startActivity(i);
-//            }
-//        });
+        registerForContextMenu(findViewById(R.id.));
+    }
+
+    @Override
+    public void onMovedToScrapHeap(View view) {
+
     }
 }

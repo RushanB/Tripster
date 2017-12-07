@@ -28,7 +28,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDU-pbyDpUVyRSLuLIDEBulQXnUIXK1eew" />
 
-        <activity android:name=".view.SplashActivity"></activity>
+        <activity android:name=".view.SplashActivity" />
+        <activity android:name=".view.AddPlace" />
+        <activity android:name=".view.AddTrip" />
     </application>
 
 </manifest>
