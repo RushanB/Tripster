@@ -34,10 +34,26 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.AddPlace" />
-        <activity android:name=".activity.AddTrip" />
-        <activity android:name=".activity.AddPayment" />
-        <activity android:name=".activity.TripInfo" />
+        <activity android:name=".activity.AddPlace" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.AddTrip" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.AddPayment" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.TripInfo" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

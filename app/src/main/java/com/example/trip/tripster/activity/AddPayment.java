@@ -34,7 +34,7 @@ public class AddPayment extends AppCompatActivity implements AdapterView.OnItemS
 
         //toolbar
         toolbar = (Toolbar) findViewById(R.id.paymentToolbar);
-        getSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);

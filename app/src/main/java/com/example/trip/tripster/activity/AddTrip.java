@@ -28,7 +28,7 @@ public class AddTrip extends AppCompatActivity {
         budgetTextF = (TextView) findViewById(R.id.tripBudget);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        getSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

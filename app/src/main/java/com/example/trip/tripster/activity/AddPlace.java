@@ -64,7 +64,7 @@ public class AddPlace extends AppCompatActivity implements TimePickerDialog.OnTi
         endDateButton = (Button) findViewById(R.id.endDate);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        getSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
