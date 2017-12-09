@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,9 +28,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDU-pbyDpUVyRSLuLIDEBulQXnUIXK1eew" />
 
-        <activity android:name=".view.SplashActivity" />
-        <activity android:name=".view.AddPlace" />
-        <activity android:name=".view.AddTrip" />
+        <activity android:name=".activity.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.AddPlace" />
+        <activity android:name=".activity.AddTrip" />
+        <activity android:name=".activity.AddPayment" />
+        <activity android:name=".activity.TripInfo" />
     </application>
 
 </manifest>

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    tools:context="com.example.trip.tripster.activity.AddTrip">
+    android:gravity="center"
+    tools:context="com.example.trip.tripster.activity.AddPayment">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -18,35 +18,21 @@
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
+            android:id="@+id/paymentToolbar"
             android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tripName"
+            android:id="@+id/totalAmount"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:textSize="42sp"
-            android:hint="Enter Trip Name"
+            android:hint="Enter Total Amount"
             android:textColorHint="@android:color/darker_gray"
             />
 
+
     </android.support.design.widget.AppBarLayout>
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tripBudget"
-        android:layout_gravity="center"
-        android:layout_below="@id/appBar"
-        android:layout_weight="1"
-        android:hint="Enter Trip Budget"
-        android:textColorHint="@android:color/darker_gray"
-        android:textSize="25sp"
-        android:inputType="phone"/>
-
 
 </RelativeLayout>

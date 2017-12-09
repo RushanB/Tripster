@@ -1,14 +1,13 @@
-package com.example.trip.tripster.view;
+package com.example.trip.tripster.activity;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.AbsListView;
 
 import com.example.trip.tripster.R;
 import com.example.trip.tripster.model.Trip;
+import com.example.trip.tripster.model.Trips;
 
 import java.util.ArrayList;
 

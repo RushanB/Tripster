@@ -1,13 +1,12 @@
-package com.example.trip.tripster.view;
+package com.example.trip.tripster.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.trip.tripster.R;
-import com.example.trip.tripster.view.MainActivity;
 
-public class SplashActivity extends AppCompatActivity {
+public class Splash extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
