@@ -3,10 +3,12 @@
 
     <item
         android:id="@+id/tabPlaces"
+        android:icon="@android:drawable/ic_menu_myplaces"
         android:title="Places" />
 
     <item
         android:id="@+id/tabPayments"
+        android:icon="@android:drawable/ic_menu_send"
         android:title="Payments" />
 
 

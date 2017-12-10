@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.annotation.NonNull;
@@ -54,16 +53,18 @@ public class PlaceFragment extends Fragment implements RecyclerViewListener, Goo
     private GoogleApiClient googleApiClient;
     private Place myPlace; //google places
     String placeName;
+    String placeId;
     private RecyclerView placeRecyclerView;
     private RecyclerView.Adapter placeAdapter;
     private int adapterPosition;
     private OnFragmentInteractionListener mListener;
+    private static final int PLACE_REQUEST = 1;
 
     public PlaceFragment() {
         // Required empty public constructor
     }
 
-    public static android.support.v4.app.Fragment newInstance(int tripPosition) {
+    public static PlaceFragment newInstance(int tripPosition) {
         PlaceFragment fragment = new PlaceFragment();
         Bundle args = new Bundle();
         args.putInt("tripPosition", tripPosition);
@@ -96,11 +97,11 @@ public class PlaceFragment extends Fragment implements RecyclerViewListener, Goo
             myTrip = trips.getTripArrayList().get(tripPosition);
         }
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-        placeRecyclerView.setLayoutManager(layoutManager);
-
         placeRecyclerView = (RecyclerView) view.findViewById(R.id.myPlaces);
         placeRecyclerView.setHasFixedSize(false);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        placeRecyclerView.setLayoutManager(layoutManager);
 
         placeAdapter = new PlacesAdapter(view.getContext(), myTrip, this);
         placeRecyclerView.setAdapter(placeAdapter);
@@ -117,7 +118,7 @@ public class PlaceFragment extends Fragment implements RecyclerViewListener, Goo
 
     @Override
     public void onActivityResult(int request, int result, Intent data) {
-        if (request == 1) {
+        if (PLACE_REQUEST == request) {
             if (Activity.RESULT_OK == result) {
                 if (data.hasExtra("PlaceName") && data.hasExtra("StartInfo") && data.hasExtra("EndInfo") && data.hasExtra("Address")) {
                     myTrip.addPlace(data.getStringExtra("PlaceName"),
@@ -180,7 +181,7 @@ public class PlaceFragment extends Fragment implements RecyclerViewListener, Goo
 
     public void updatePlaceForTrip() {
         Intent intent = new Intent(getActivity(), AddPlace.class);
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, PLACE_REQUEST);
     }
 
 
@@ -256,5 +257,24 @@ public class PlaceFragment extends Fragment implements RecyclerViewListener, Goo
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void getPlace(String placeId) {
+        Places.GeoDataApi.getPlaceById(googleApiClient, placeId).setResultCallback(new ResultCallback<PlaceBuffer>() {
+            @Override
+            public void onResult(@NonNull PlaceBuffer places) {
+                if(places.getStatus().isSuccess() && places.getCount() > 0) {
+                    myPlace = places.get(0);
+
+                    Log.i(TAG, "Place Found: " + myPlace.getName());
+
+                    placeName = (String) myPlace.getName();
+                    Toast.makeText(getActivity(), myPlace.getName(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e(TAG, "Unable To Find Place");
+                }
+                places.release();
+            }
+        });
     }
 }

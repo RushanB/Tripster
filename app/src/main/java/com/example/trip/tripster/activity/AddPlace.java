@@ -146,7 +146,7 @@ public class AddPlace extends AppCompatActivity implements TimePickerDialog.OnTi
 
     //HTTP request
     protected void onActivityResult(int request, int result, Intent intent) {
-        if (request == 1) {
+        if (request == PLACE_REQUEST) {
             if (result == RESULT_OK) {
                 place = PlacePicker.getPlace(this, intent);
                 ((TextView)findViewById(R.id.placeName)).setText(place.getName());

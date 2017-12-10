@@ -75,7 +75,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripView> {
             itemView.setOnLongClickListener(this);
         }
 
-        @Override
         public void onClick(View v) {
             listener.recyclerViewClicked(v, this.getAdapterPosition());
 

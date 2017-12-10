@@ -54,18 +54,19 @@ public class TripInfo extends AppCompatActivity implements PlaceFragment.OnFragm
 
         setTitle(myTrip.getTripName());
 
-        calculateButton = (Button) findViewById(R.id.calculatePayments);
-        calculateButton.setVisibility(View.INVISIBLE);
-        title = (TextView) findViewById(R.id.infoTitle);
-        adjustTitle();
-
         BottomNavigationView navigationView = (BottomNavigationView)  findViewById(R.id.tabs);
-        navigationView.setOnNavigationItemSelectedListener(navigationItemReselectedListener);
+        navigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
         selectedFragment = PlaceFragment.newInstance(tripPosition);
-        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.tripInformation, selectedFragment);
         transaction.commit();
+
+
+        title = (TextView) findViewById(R.id.infoTitle);
+        calculateButton = (Button) findViewById(R.id.calculatePayments);
+        calculateButton.setVisibility(View.INVISIBLE);
+        adjustTitle();
     }
 
     @Override
@@ -83,7 +84,7 @@ public class TripInfo extends AppCompatActivity implements PlaceFragment.OnFragm
         if (selectedFragment.getClass().equals(PlaceFragment.class)) {
             title.setText("Total Places: " + myTrip.getMyPlaces().size());
         } else if (selectedFragment.getActivity().equals(PaymentFragment.class)) {
-            title.setText("Total Cost: " + myTrip.getTripBudget().getTotalCost());
+            title.setText("Amount Spent: " + myTrip.getTripBudget().getAmountSpent());
         }
     }
 
@@ -109,7 +110,7 @@ public class TripInfo extends AppCompatActivity implements PlaceFragment.OnFragm
         }
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemReselectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {

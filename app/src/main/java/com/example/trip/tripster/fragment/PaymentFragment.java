@@ -25,10 +25,6 @@ import com.example.trip.tripster.activity.TripInfo;
 import com.example.trip.tripster.adapter.PaymentAdapter;
 import com.example.trip.tripster.model.Trip;
 import com.example.trip.tripster.model.Trips;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.PlaceBuffer;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -36,7 +36,7 @@
         app:fabSize="normal"
         android:tint="@android:color/white"
         app:backgroundTint="@color/colorPrimary"
-        android:layout_margin="16dp"/>
+        android:layout_margin="20dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

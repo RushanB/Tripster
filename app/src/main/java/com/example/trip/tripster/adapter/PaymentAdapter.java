@@ -54,14 +54,12 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentV
     }
 
     public class PaymentView extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-
-//        CardView cardView;
+        
         TextView amountPaid;
 
         PaymentView(View itemView){
             super(itemView);
 
-//            cardView = (CardView)itemView.findViewById(R.id.paymentsCard);
             amountPaid = (TextView) itemView.findViewById(R.id.payment_Amount);
 
             itemView.setOnClickListener(this);

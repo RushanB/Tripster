@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tripInfoView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.trip.tripster.activity.TripInfo"
@@ -42,6 +43,7 @@
                 android:id="@+id/calculatePayments"
                 android:layout_alignParentRight="true"
                 android:text="Calculate"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:onClick="openCalculatePayments" />
 
         </RelativeLayout>
@@ -50,7 +52,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:id="@+id/tripInformation"
         android:layout_weight="1"
         android:animateLayoutChanges="true">
@@ -62,22 +64,27 @@
             android:id="@+id/fab"
             android:onClick="addTripInfo"
             android:layout_gravity="bottom|end"
+            android:layout_margin="20dp"
+            android:tint="@android:color/white"
+            app:fabSize="normal"
+            app:elevation="6dp"
             android:backgroundTint="@color/colorPrimary"
             android:src="@android:drawable/ic_input_add"
             android:clickable="true"/>
 
     </FrameLayout>
-
-
-    <android.support.design.internal.BottomNavigationItemView
+    
+    <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tabs"
-        android:background="@color/colorPrimary"
-        app:menu="@menu/menu_tabs"
+        android:background="@color/colorPrimaryDark"
+        app:menu="@menu/tabs"
+        app:elevation="8dp"
         android:layout_gravity="bottom"
-        android:elevation="10dp"
-        />
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        android:elevation="10dp" />
 
 
 </LinearLayout>

@@ -94,8 +94,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
         tripRecycler.setHasFixedSize(false);
         //linear layout manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
         tripRecycler.setLayoutManager(layoutManager);
+        //set adapter
         tripAdapter = new TripAdapter(getBaseContext(), tripArrayList, this);
         tripRecycler.setAdapter(tripAdapter);
     }

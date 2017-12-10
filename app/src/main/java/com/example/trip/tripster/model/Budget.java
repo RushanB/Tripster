@@ -25,7 +25,7 @@ public class Budget implements Serializable{
         return totalCost;
     }
 
-    public double getAmountSpent() {
+    public double  getAmountSpent() {
         return amountSpent;
     }
 
