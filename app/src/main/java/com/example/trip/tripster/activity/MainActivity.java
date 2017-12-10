@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewListener {
 
-    public static final String fileName = "trips";
+    public static final String fileName = "Trips";
     private Trips trips;
     private String tripNameId = "TripName";
     private String tripBudgetId = "TripBudget";

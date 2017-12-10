@@ -120,7 +120,10 @@ public class PlaceFragment extends Fragment implements RecyclerViewListener, Goo
         if (request == 1) {
             if (Activity.RESULT_OK == result) {
                 if (data.hasExtra("PlaceName") && data.hasExtra("StartInfo") && data.hasExtra("EndInfo") && data.hasExtra("Address")) {
-                    myTrip.addPlace(data.getStringExtra("PlaceName"), data.getStringExtra("Address"), (GregorianCalendar)data.getSerializableExtra("StartInfo"), (GregorianCalendar)data.getSerializableExtra("EndInfo"));
+                    myTrip.addPlace(data.getStringExtra("PlaceName"),
+                            data.getStringExtra("Address"),
+                            (GregorianCalendar)data.getSerializableExtra("StartInfo"),
+                            (GregorianCalendar)data.getSerializableExtra("EndInfo"));
 
                     placeAdapter.notifyDataSetChanged();
 
@@ -129,7 +132,9 @@ public class PlaceFragment extends Fragment implements RecyclerViewListener, Goo
 
                     Toast.makeText(getActivity(), data.getStringExtra("Address"), Toast.LENGTH_SHORT).show();
                 } else if (data.hasExtra("PlaceName") && data.hasExtra("StartInfo") && data.hasExtra("EndInfo")) {
-                    myTrip.addPlace(data.getStringExtra("PlaceName"), data.getStringExtra("Address"), (GregorianCalendar)data.getSerializableExtra("StartInfo"), (GregorianCalendar)data.getSerializableExtra("EndInfo"));
+                    myTrip.addPlace(data.getStringExtra("PlaceName"),
+                            (GregorianCalendar)data.getSerializableExtra("StartInfo"),
+                            (GregorianCalendar)data.getSerializableExtra("EndInfo"));
 
                     placeAdapter.notifyDataSetChanged();
 

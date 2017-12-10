@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/placeLocation"
-            android:onClick="placePicker"
+            android:onClick="openPlacePicker"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_below="@id/appBar"
@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/startDate"
-        android:onClick="startDatePicker"
+        android:onClick="openDatePicker"
         android:layout_marginTop="20dp"
         android:text="Start Date"
         android:layout_below="@id/appBar"/>
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/startTime"
-        android:onClick="startTimePicker"
+        android:onClick="openTimePicker"
         android:text="Start Time"
         android:layout_below="@id/startDate" />
 
@@ -71,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/endDate"
-        android:onClick="endDatePicker"
+        android:onClick="closeDatePicker"
         android:layout_marginTop="20dp"
         android:text="End Date"
         android:layout_below="@id/startTime"/>
@@ -80,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/endTime"
-        android:onClick="endTimePicker"
+        android:onClick="closeTimePicker"
         android:text="End Time"
         android:layout_below="@id/endDate"/>
 

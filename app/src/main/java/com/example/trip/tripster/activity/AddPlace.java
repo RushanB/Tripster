@@ -50,6 +50,7 @@ public class AddPlace extends AppCompatActivity implements TimePickerDialog.OnTi
     Place place;
     private static final String TAG = AddPlace.class.getSimpleName();
     int status;
+    int PLACE_REQUEST = 1;
 
 
     @Override
@@ -134,7 +135,7 @@ public class AddPlace extends AppCompatActivity implements TimePickerDialog.OnTi
         if (status == ConnectionResult.SUCCESS) {
             PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
             try {
-                startActivityForResult(intentBuilder.build(this), 1);
+                startActivityForResult(intentBuilder.build(this), PLACE_REQUEST);
             } catch (GooglePlayServicesRepairableException e) {
                 Log.e(TAG, e.getMessage());
             } catch (GooglePlayServicesNotAvailableException e) {
