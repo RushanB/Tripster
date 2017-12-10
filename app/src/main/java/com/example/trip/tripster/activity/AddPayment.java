@@ -41,7 +41,7 @@ public class AddPayment extends AppCompatActivity implements AdapterView.OnItemS
 
         //get the trips position
         Trips trips = Trips.getInstance();
-        int tripPosition = getIntent().getExtras().getInt("position");
+        int tripPosition = getIntent().getExtras().getInt("tripPosition");
         myTrip = trips.getTripArrayList().get(tripPosition);
     }
 

@@ -16,8 +16,8 @@ public class Trips implements Serializable {
         tripArrayList = new ArrayList<Trip>();
     }
 
-    public void setTripArrayList(ArrayList<Trip> arrayList) {
-        this.tripArrayList = arrayList;
+    public void setTripArrayList(ArrayList<Trip> tripArrayList) {
+        this.tripArrayList = tripArrayList;
     }
 
     public ArrayList<Trip> getTripArrayList() {

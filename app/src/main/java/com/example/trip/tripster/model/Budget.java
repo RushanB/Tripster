@@ -1,13 +1,15 @@
 package com.example.trip.tripster.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by rush on 2017-12-06.
  */
 
-public class Budget {
+public class Budget implements Serializable{
 
+    private static final long serialVersionUID = 42L;
     private ArrayList payments;
     private double totalCost;
     private double amountSpent;

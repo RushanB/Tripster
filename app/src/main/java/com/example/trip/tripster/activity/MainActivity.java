@@ -30,10 +30,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewListener {
 
-    public static final String fileName = "Trips";
+    public static final String fileName = "trips";
     private Trips trips;
-    private String tripNameId = "TripName";
-    private String tripBudgetId = "TripBudget";
+    private String tripNameId = "NameTextF";
+    private String tripBudgetId = "BudgetTextF";
     private RecyclerView tripRecycler;
     private RecyclerView.Adapter tripAdapter;
     private int adapterPosition;
@@ -94,8 +94,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
         tripRecycler.setHasFixedSize(false);
         //linear layout manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        tripRecycler.setLayoutManager(layoutManager);
 
+        tripRecycler.setLayoutManager(layoutManager);
         tripAdapter = new TripAdapter(getBaseContext(), tripArrayList, this);
         tripRecycler.setAdapter(tripAdapter);
     }
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
             objectOutputStream.close();
         } catch (Exception e) {
             Toast.makeText(this, "Invalid Trip 2", Toast.LENGTH_SHORT).show();
-            Log.e("","exceptiom", e);
+            Log.e("","exception", e);
         }
     }
 

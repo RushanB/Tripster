@@ -62,7 +62,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentV
             super(itemView);
 
 //            cardView = (CardView)itemView.findViewById(R.id.paymentsCard);
-            amountPaid = (TextView) itemView.findViewById(R.id.totalAmount);
+            amountPaid = (TextView) itemView.findViewById(R.id.payment_Amount);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);

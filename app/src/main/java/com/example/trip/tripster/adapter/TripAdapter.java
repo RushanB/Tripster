@@ -67,9 +67,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripView> {
         TripView(View itemView) {
             super(itemView);
 
-            name = (TextView)itemView.findViewById(R.id.tripName);
-            budget = (TextView)itemView.findViewById(R.id.tripBudget);
-            cardView = (CardView)itemView.findViewById(R.id.cardView);
+            name = (TextView)itemView.findViewById(R.id.trip_Name);
+            budget = (TextView)itemView.findViewById(R.id.trip_Budget);
+            cardView = (CardView)itemView.findViewById(R.id.tripCard);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);

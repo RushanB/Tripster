@@ -9,6 +9,8 @@ import java.util.GregorianCalendar;
  */
 
 public class Trip implements Serializable {
+
+    private static final long serialVersionUID = 56L;
     private String tripName;
     private Budget tripBudget;
     private String tripLocation;

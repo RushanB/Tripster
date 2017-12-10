@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:id="@+id/paymentAmount"
+            android:id="@+id/payment_Amount"
             android:gravity="right"
             android:layout_centerVertical="true"
             />

@@ -92,6 +92,7 @@ public class TripInfo extends AppCompatActivity implements PlaceFragment.OnFragm
             FileOutputStream fileOutputStream = openFileOutput("trips", Context.MODE_PRIVATE);
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(trips.getTripArrayList());
+
             fileOutputStream.close();
             outputStream.close();
         } catch (Exception e) {
@@ -117,7 +118,7 @@ public class TripInfo extends AppCompatActivity implements PlaceFragment.OnFragm
                     selectedFragment = PlaceFragment.newInstance(tripPosition);
                     break;
                 case R.id.tabPayments:
-                    calculateButton.setVisibility(View.INVISIBLE);
+                    calculateButton.setVisibility(View.VISIBLE);
                     selectedFragment = PaymentFragment.newInstance(tripPosition);
                     break;
                 default:

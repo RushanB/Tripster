@@ -69,8 +69,8 @@ public class AddTrip extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(), MainActivity.class);
 
         if (!nameTextF.getText().toString().matches("") && !budgetTextF.getText().toString().matches("")) {
-            intent.putExtra("nameTextF", nameTextF.getText().toString());
-            intent.putExtra("budgetTextF", budgetTextF.getText().toString());
+            intent.putExtra("NameTextF", nameTextF.getText().toString());
+            intent.putExtra("BudgetTextF", budgetTextF.getText().toString());
 
             setResult(RESULT_OK, intent);
         } else {

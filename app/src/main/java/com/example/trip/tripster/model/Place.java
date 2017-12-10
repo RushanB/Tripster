@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
 
 public class Place implements Serializable {
 
+    private static final long serialVersionUID = 48L;
     private String placeName;
     private String placeLocation;
     GregorianCalendar startTime;
