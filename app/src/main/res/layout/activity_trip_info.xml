@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/appBar"
+        android:theme="@style/AppTheme.AppBarOverlay"
         android:background="@color/colorPrimary"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
@@ -18,9 +19,9 @@
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
+            android:id="@+id/tripInfoToolbar"
             android:background="@color/colorPrimary"
-            app:popupTheme="@style/AppTheme"/>
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

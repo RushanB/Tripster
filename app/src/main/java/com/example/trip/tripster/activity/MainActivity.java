@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.Toast;
 
 import com.example.trip.tripster.R;
@@ -35,10 +34,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
     private Trips trips;
     private String tripNameId = "TripName";
     private String tripBudgetId = "TripBudget";
-    private RecyclerView recyclerView;
+    private RecyclerView tripRecycler;
     private RecyclerView.Adapter tripAdapter;
     private int adapterPosition;
     private ArrayList<Trip> tripArrayList;
+    public static final int TRIP_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
             if (file == null || !file.exists()) {
                 FileOutputStream fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
                 Trip first = new Trip("European Adventure", 1200.0);
+                Trip second = new Trip("The Grand Canyon", 500.0);
                 tripArrayList.add(first);
+                tripArrayList.add(second);
 
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
                 objectOutputStream.writeObject(tripArrayList);
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
                 objectInputStream.close();
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Invalid Trip", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Invalid Trip 1", Toast.LENGTH_SHORT).show();
             Log.e("", "exception", e);
         }
         //set instance of trips
@@ -78,30 +80,31 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
         trips.setTripArrayList(tripArrayList);
 
         //set toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
 
-        setTitle("Trips");
+        //Set title
+        setTitle("My Trips");
 
         if(getIntent().hasExtra(tripNameId) && getIntent().hasExtra(tripBudgetId)) {
             addTrip(new Trip(getIntent().getStringExtra(tripNameId),Double.parseDouble((getIntent().getStringExtra(tripBudgetId)))));
         }
         //set recycler view
-        recyclerView = (RecyclerView)findViewById(R.id.myTrips);
-        recyclerView.setHasFixedSize(false);
+        tripRecycler = (RecyclerView) findViewById(R.id.myTrips);
+        tripRecycler.setHasFixedSize(false);
         //linear layout manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        tripRecycler.setLayoutManager(layoutManager);
 
         tripAdapter = new TripAdapter(getBaseContext(), tripArrayList, this);
-        recyclerView.setAdapter(tripAdapter);
+        tripRecycler.setAdapter(tripAdapter);
     }
 
     @Override
     protected void onActivityResult(int request, int result, Intent data) {
         super.onActivityResult(request,result,data);
 
-        if(request == 1 && result == RESULT_OK) {
+        if(request == TRIP_REQUEST && result == RESULT_OK) {
             if (data.hasExtra(tripNameId) && data.hasExtra(tripBudgetId)) {
                 addTrip(new Trip(data.getStringExtra(tripNameId), Double.parseDouble((data.getStringExtra(tripBudgetId)))));
             }
@@ -116,16 +119,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
     public void newTrip(View v) {
         //set return intents
         Intent newTripIntent = new Intent(this, AddTrip.class);
-        startActivityForResult(newTripIntent, 1);
+        startActivityForResult(newTripIntent, TRIP_REQUEST);
     }
 
     public void addTrip(Trip newTrip) {
         tripArrayList.add(newTrip);
         tripAdapter.notifyDataSetChanged();
-        update();
+        updateTripList();
     }
 
-    public void update() {
+    public void updateTripList() {
         try {
             FileOutputStream fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -136,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
             fileOutputStream.close();
             objectOutputStream.close();
         } catch (Exception e) {
-            Toast.makeText(this, "Invalid Trip", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Invalid Trip 2", Toast.LENGTH_SHORT).show();
             Log.e("","exceptiom", e);
         }
     }
@@ -172,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
 
             tripArrayList.remove(adapterPosition);
 
-            update();
+            updateTripList();
 
             tripAdapter.notifyDataSetChanged();
 

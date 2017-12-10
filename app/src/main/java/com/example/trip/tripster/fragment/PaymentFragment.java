@@ -115,10 +115,10 @@ public class PaymentFragment extends Fragment implements RecyclerViewListener {
     }
 
     public void updatePaymentForTrip() {
-//        Intent intent = new Intent(getActivity(), Calculate.class);
-//        intent.putExtra("tripPosition", tripPosition);
+        Intent intent = new Intent(getActivity(), AddPayment.class);
+        intent.putExtra("tripPosition", tripPosition);
 
-//        startActivityForResult(intent, 2);
+        startActivityForResult(intent, 1);
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -139,14 +139,6 @@ public class PaymentFragment extends Fragment implements RecyclerViewListener {
             return true;
         }
         return super.onContextItemSelected(item);
-    }
-
-
-    public void addPayment() {
-        Intent intent = new Intent(getActivity(), AddPayment.class);
-        intent.putExtra("tripPosition", tripPosition);
-
-        startActivityForResult(intent, 1);
     }
 
     public void calculatePayments() {

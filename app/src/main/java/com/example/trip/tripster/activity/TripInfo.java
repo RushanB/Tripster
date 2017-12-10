@@ -47,7 +47,7 @@ public class TripInfo extends AppCompatActivity implements PlaceFragment.OnFragm
         myTrip = trips.getTripArrayList().get(tripPosition);
 
         //toolbar
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.tripInfoToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -74,7 +74,7 @@ public class TripInfo extends AppCompatActivity implements PlaceFragment.OnFragm
     }
 
     public boolean openCalculatePayments(View v) {
-//        ((PaymentFragment)selectedFragment).calculatePayments();
+        ((PaymentFragment)selectedFragment).calculatePayments();
         return true;
     }
 

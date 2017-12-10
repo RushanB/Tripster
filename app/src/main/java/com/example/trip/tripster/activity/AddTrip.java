@@ -27,7 +27,7 @@ public class AddTrip extends AppCompatActivity {
 
         budgetTextF = (TextView) findViewById(R.id.tripBudget);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.addTripToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -36,7 +36,7 @@ public class AddTrip extends AppCompatActivity {
     }
 
 
-    public boolean addTrip(MenuItem menuItem) {
+    public boolean newTrip(MenuItem menuItem) {
         if (nameTextF.getText().toString().matches("")) {
             Toast.makeText(this, "Invalid Name", Toast.LENGTH_SHORT).show();
             return false;

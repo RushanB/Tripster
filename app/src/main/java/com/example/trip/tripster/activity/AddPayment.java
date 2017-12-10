@@ -33,7 +33,7 @@ public class AddPayment extends AppCompatActivity implements AdapterView.OnItemS
         totalTextF = (TextView)findViewById(R.id.totalAmount);
 
         //toolbar
-        toolbar = (Toolbar) findViewById(R.id.paymentToolbar);
+        toolbar = (Toolbar) findViewById(R.id.addPaymentToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
