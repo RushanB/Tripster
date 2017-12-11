@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
         trips.setTripArrayList(tripArrayList);
 
         //set toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.mainToolbar);
+        Toolbar toolbar;
+        toolbar = (Toolbar)findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
 
         //Set title
