@@ -18,6 +18,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.location.places.Place;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -48,6 +49,7 @@ public class AddPlace extends AppCompatActivity implements TimePickerDialog.OnTi
     Toolbar toolbar;
 
     Place place;
+    PlaceAutocompleteFragment autocompleteFragment;
     private static final String TAG = AddPlace.class.getSimpleName();
     int status;
     int PLACE_REQUEST = 1;
@@ -58,17 +60,17 @@ public class AddPlace extends AppCompatActivity implements TimePickerDialog.OnTi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_place);
 
-        nameTextF = (TextView) findViewById(R.id.placeName);
-        startTimeButton = (Button) findViewById(R.id.startTime);
-        startDateButton = (Button) findViewById(R.id.startDate);
-        endTimeButton = (Button) findViewById(R.id.endTime);
-        endDateButton = (Button) findViewById(R.id.endDate);
-
         toolbar = (Toolbar) findViewById(R.id.addPlaceToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
+
+        nameTextF = (TextView) findViewById(R.id.placeName);
+        startTimeButton = (Button) findViewById(R.id.startTime);
+        startDateButton = (Button) findViewById(R.id.startDate);
+        endTimeButton = (Button) findViewById(R.id.endTime);
+        endDateButton = (Button) findViewById(R.id.endDate);
 
         String[] idArray = TimeZone.getAvailableIDs(-8 * 80 * 60 * 1000); //Pacific Standard Time Zone
         if (idArray.length == 0) {
@@ -76,19 +78,19 @@ public class AddPlace extends AppCompatActivity implements TimePickerDialog.OnTi
         }
         //create new PacificST
         SimpleTimeZone pacificStandardTime = new SimpleTimeZone(-8 * 60 * 60 * 1000, idArray[0]);
-        pacificStandardTime.setStartRule(Calendar.APRIL, -1, Calendar.SUNDAY, 2 * 60 * 60 * 1000);
+        pacificStandardTime.setStartRule(Calendar.APRIL, 1, Calendar.SUNDAY, 2 * 60 * 60 * 1000);
         pacificStandardTime.setEndRule(Calendar.OCTOBER, -1, Calendar.SUNDAY, 2 * 60 * 60 * 1000);
 
 
         Calendar calendar = new GregorianCalendar(pacificStandardTime);
+        Date date = new Date();
+        calendar.setTime(date);
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
 
-        Date date = new Date();
-        calendar.setTime(date);
 
         timeFormat = new SimpleDateFormat("hh:mm aa");
         dateFormat = new SimpleDateFormat("EEE, MMM dd, yyyy");
@@ -133,9 +135,9 @@ public class AddPlace extends AppCompatActivity implements TimePickerDialog.OnTi
     public void openPlacePicker(View v) {
 
         if (status == ConnectionResult.SUCCESS) {
-            PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
             try {
-                startActivityForResult(intentBuilder.build(this), PLACE_REQUEST);
+                startActivityForResult(builder.build(this), PLACE_REQUEST);
             } catch (GooglePlayServicesRepairableException e) {
                 Log.e(TAG, e.getMessage());
             } catch (GooglePlayServicesNotAvailableException e) {
@@ -156,6 +158,16 @@ public class AddPlace extends AppCompatActivity implements TimePickerDialog.OnTi
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.save) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_add_place, menu);
@@ -165,12 +177,12 @@ public class AddPlace extends AppCompatActivity implements TimePickerDialog.OnTi
 
     @Override
     public void finish() {
-        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+        Intent intent = new Intent();
 
         if (!nameTextF.getText().toString().matches("")) {
-            intent.putExtra("Name",nameTextF.getText().toString());
-            intent.putExtra("StartDate", start);
-            intent.putExtra("EndDate", end);
+            intent.putExtra("EventNameField",nameTextF.getText().toString());
+            intent.putExtra("StartInfo", start);
+            intent.putExtra("EndInfo", end);
             intent.putExtra("Address", place.getAddress());
 
             setResult(RESULT_OK, intent);

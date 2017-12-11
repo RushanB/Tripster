@@ -27,37 +27,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripView> {
     private Context context;
     private static final String TAG = "";
 
-    public TripAdapter(Context context, List<Trip> tripList, RecyclerViewListener listener) {
-        this.context = context;
-        this.listener = listener;
-        this.tripList = tripList;
-    }
-
-    @Override
-    public TripView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_trip, parent, false);
-
-        return new TripView(v);
-    }
-
-    @Override
-    public void onBindViewHolder(TripView holder, int position) {
-        String myBudget = "Budget: " + Double.toString(tripList.get(position).getTripBudget().getTotalCost());
-
-        holder.name.setText(tripList.get(position).getTripName());
-        holder.budget.setText(myBudget);
-    }
-
-    @Override
-    public int getItemCount() {
-        return tripList.size();
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-    }
-
     public class TripView extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         TextView name;
@@ -92,5 +61,34 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripView> {
         }
     }
 
+    public TripAdapter(Context context, List<Trip> tripList, RecyclerViewListener listener) {
+        this.context = context;
+        this.listener = listener;
+        this.tripList = tripList;
+    }
 
+    @Override
+    public TripView onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_trip, parent, false);
+
+        return new TripView(v);
+    }
+
+    @Override
+    public void onBindViewHolder(TripView holder, int position) {
+        String myBudget = "Budget: " + Double.toString(tripList.get(position).getTripBudget().getTotalCost());
+
+        holder.name.setText(tripList.get(position).getTripName());
+        holder.budget.setText(myBudget);
+    }
+
+    @Override
+    public int getItemCount() {
+        return tripList.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }
 }

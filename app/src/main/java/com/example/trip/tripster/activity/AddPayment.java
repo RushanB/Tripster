@@ -90,7 +90,7 @@ public class AddPayment extends AppCompatActivity implements AdapterView.OnItemS
     public void finish() {
         Intent intent = new Intent();
         if (!totalTextF.getText().toString().matches("")) {
-            intent.putExtra("TotalAmount", totalTextF.getText().toString());
+            intent.putExtra("paymentAmountField", totalTextF.getText().toString());
 
             setResult(RESULT_OK, intent);
         } else {

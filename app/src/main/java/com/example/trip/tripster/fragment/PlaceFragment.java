@@ -120,8 +120,8 @@ public class PlaceFragment extends Fragment implements RecyclerViewListener, Goo
     public void onActivityResult(int request, int result, Intent data) {
         if (PLACE_REQUEST == request) {
             if (Activity.RESULT_OK == result) {
-                if (data.hasExtra("PlaceName") && data.hasExtra("StartInfo") && data.hasExtra("EndInfo") && data.hasExtra("Address")) {
-                    myTrip.addPlace(data.getStringExtra("PlaceName"),
+                if (data.hasExtra("EventNameField") && data.hasExtra("StartInfo") && data.hasExtra("EndInfo") && data.hasExtra("Address")) {
+                    myTrip.addPlace(data.getStringExtra("EventNameField"),
                             data.getStringExtra("Address"),
                             (GregorianCalendar)data.getSerializableExtra("StartInfo"),
                             (GregorianCalendar)data.getSerializableExtra("EndInfo"));
@@ -132,8 +132,8 @@ public class PlaceFragment extends Fragment implements RecyclerViewListener, Goo
                     ((TripInfo)getActivity()).adjustTitle();
 
                     Toast.makeText(getActivity(), data.getStringExtra("Address"), Toast.LENGTH_SHORT).show();
-                } else if (data.hasExtra("PlaceName") && data.hasExtra("StartInfo") && data.hasExtra("EndInfo")) {
-                    myTrip.addPlace(data.getStringExtra("PlaceName"),
+                } else if (data.hasExtra("EventNameField") && data.hasExtra("StartInfo") && data.hasExtra("EndInfo")) {
+                    myTrip.addPlace(data.getStringExtra("EventNameField"),
                             (GregorianCalendar)data.getSerializableExtra("StartInfo"),
                             (GregorianCalendar)data.getSerializableExtra("EndInfo"));
 
@@ -249,7 +249,7 @@ public class PlaceFragment extends Fragment implements RecyclerViewListener, Goo
             myPlace = places.get(0);
             Log.i(TAG, "Place Found: " + myPlace.getName());
         } else {
-            Log.e(TAG, "Place Not Found");
+            Log.e(TAG, "Unable To Find Place");
         }
         places.release();
     }

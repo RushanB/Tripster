@@ -29,60 +29,6 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesView
     private RecyclerViewListener listener;
     private Context context;
 
-    public PlacesAdapter(Context context, Trip trip, RecyclerViewListener listener) {
-        this.context = context;
-        this.myTrip = trip;
-        this.listener = listener;
-    }
-
-    @Override
-    public PlacesView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_place, parent, false);
-        dateFormat = new SimpleDateFormat("EEE, MMM dd, yyyy");
-        timeFormat = new SimpleDateFormat("hh:mm aa");
-
-        return new PlacesView(v);
-    }
-
-    @Override
-    public void onBindViewHolder(PlacesView holder, int position) {
-        Place place = (Place)myTrip.getMyPlaces().get(position);
-        holder.name.setText(place.getPlaceName());
-
-        String startDate =  getDate(dateFormat, place.getStartTime());
-        String startTime = getDate(dateFormat, place.getStartTime());
-        String endDate = getDate(dateFormat, place.getEndTime());
-        String endTime = getDate(dateFormat, place.getEndTime());
-
-        if(startDate.equals(endDate)) {
-            holder.date.setText(startDate);
-        } else {
-            holder.date.setText(startDate + " - " + endDate);
-        }
-
-        if(startTime.equals(endTime)) {
-            holder.time.setText(startTime);
-        } else {
-            holder.time.setText(startTime + " - " + endTime);
-        }
-    }
-
-    public String getDate(SimpleDateFormat simpleDateFormat, GregorianCalendar calendar) {
-        simpleDateFormat.setCalendar(calendar);
-        return simpleDateFormat.format(calendar.getTime());
-    }
-
-    @Override
-    public int getItemCount() {
-        return myTrip.getMyPlaces().size();
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-    }
-
-
     public class PlacesView extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         TextView name;
@@ -115,5 +61,57 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesView
         }
     }
 
+    public PlacesAdapter(Context context, Trip trip, RecyclerViewListener listener) {
+        this.context = context;
+        myTrip = trip;
+        this.listener = listener;
+    }
+
+    @Override
+    public PlacesView onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_place, parent, false);
+        dateFormat = new SimpleDateFormat("EEE, MMM dd, yyyy");
+        timeFormat = new SimpleDateFormat("hh:mm aa");
+
+        return new PlacesView(v);
+    }
+
+    @Override
+    public void onBindViewHolder(PlacesView holder, int position) {
+        Place place = (Place)myTrip.getMyPlaces().get(position);
+        holder.name.setText(place.getPlaceName());
+
+        String startDate =  getDate(dateFormat, place.getStartTime());
+        String startTime = getDate(timeFormat, place.getStartTime());
+        String endDate = getDate(dateFormat, place.getEndTime());
+        String endTime = getDate(timeFormat, place.getEndTime());
+
+        if(startDate.equals(endDate)) {
+            holder.date.setText(startDate);
+        } else {
+            holder.date.setText(startDate + " - " + endDate);
+        }
+
+        if(startTime.equals(endTime)) {
+            holder.time.setText(startTime);
+        } else {
+            holder.time.setText(startTime + " - " + endTime);
+        }
+    }
+
+    public String getDate(SimpleDateFormat simpleDateFormat, GregorianCalendar calendar) {
+        simpleDateFormat.setCalendar(calendar);
+        return simpleDateFormat.format(calendar.getTime());
+    }
+
+    @Override
+    public int getItemCount() {
+        return myTrip.getMyPlaces().size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }
 
 }

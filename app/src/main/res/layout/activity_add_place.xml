@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    tools:context="com.example.trip.tripster.activity.AddPlace">
+    android:layout_gravity="center">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/appBar"
-        android:paddingBottom="10dp"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:background="@color/colorPrimary"
         android:layout_alignParentTop="true"
@@ -29,6 +26,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/placeName"
             android:layout_gravity="center"
+            android:gravity="start"
             android:layout_weight="1"
             android:textSize="42sp"
             android:hint="Enter Place Name"
@@ -40,12 +38,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/placeLocation"
             android:onClick="openPlacePicker"
+            android:gravity="start"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:layout_below="@id/appBar"
             android:layout_centerHorizontal="true"
             android:textSize="25sp"
-            android:hint="Enter Place Location"
+            android:hint="Enter Place Address"
             android:textColorHint="@android:color/holo_purple" />
 
     </android.support.design.widget.AppBarLayout>

@@ -34,6 +34,31 @@ public class TripInfo extends AppCompatActivity implements PlaceFragment.OnFragm
     private int tripPosition;
     private Fragment selectedFragment;
 
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.tabPlaces:
+                    calculateButton.setVisibility(View.INVISIBLE);
+                    selectedFragment = PlaceFragment.newInstance(tripPosition);
+                    break;
+                case R.id.tabPayments:
+                    calculateButton.setVisibility(View.INVISIBLE);  //change to visible once calculate payments is implemented
+                    selectedFragment = PaymentFragment.newInstance(tripPosition);
+                    break;
+                default:
+                    break;
+            }
+
+            adjustTitle();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.tripInformation, selectedFragment);
+            transaction.commit();
+
+            return true;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +108,7 @@ public class TripInfo extends AppCompatActivity implements PlaceFragment.OnFragm
     public void adjustTitle() {
         if (selectedFragment.getClass().equals(PlaceFragment.class)) {
             title.setText("Total Places: " + myTrip.getMyPlaces().size());
-        } else if (selectedFragment.getActivity().equals(PaymentFragment.class)) {
+        } else if (selectedFragment.getClass().equals(PaymentFragment.class)) {
             title.setText("Amount Spent: " + myTrip.getTripBudget().getAmountSpent());
         }
     }
@@ -109,29 +134,4 @@ public class TripInfo extends AppCompatActivity implements PlaceFragment.OnFragm
             ((PaymentFragment)selectedFragment).updatePaymentForTrip();
         }
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.tabPlaces:
-                    calculateButton.setVisibility(View.INVISIBLE);
-                    selectedFragment = PlaceFragment.newInstance(tripPosition);
-                    break;
-                case R.id.tabPayments:
-                    calculateButton.setVisibility(View.VISIBLE);
-                    selectedFragment = PaymentFragment.newInstance(tripPosition);
-                    break;
-                default:
-                    break;
-            }
-
-            adjustTitle();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.tripInformation, selectedFragment);
-            transaction.commit();
-
-            return true;
-        }
-    };
 }

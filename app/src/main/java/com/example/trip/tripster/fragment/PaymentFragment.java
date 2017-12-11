@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import com.example.trip.tripster.R;
 import com.example.trip.tripster.RecyclerViewListener;
 import com.example.trip.tripster.activity.AddPayment;
+import com.example.trip.tripster.activity.CalculatePayment;
 import com.example.trip.tripster.activity.TripInfo;
 import com.example.trip.tripster.adapter.PaymentAdapter;
 import com.example.trip.tripster.model.Trip;
@@ -43,6 +44,9 @@ public class PaymentFragment extends Fragment implements RecyclerViewListener {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter paymentAdapter;
     private OnFragmentInteractionListener mListener;
+
+    private static final int PAYMENT_REQUEST = 1;
+    private static final int CALCULATE_REQUEST = 2;
 
     public PaymentFragment() {
         // Required empty public constructor
@@ -92,10 +96,10 @@ public class PaymentFragment extends Fragment implements RecyclerViewListener {
 
     @Override
     public void onActivityResult(int request, int result, Intent data) {
-        if (1 == request) {
+        if (PAYMENT_REQUEST == request) {
             if (Activity.RESULT_OK == result) {
-                if (data.hasExtra("paymountAmount")) {
-                    myTrip.getTripBudget().addPayment(Double.parseDouble(data.getStringExtra("paymentAmount")));
+                if (data.hasExtra("paymentAmountField")) {
+                    myTrip.getTripBudget().addPayment(Double.parseDouble(data.getStringExtra("paymentAmountField")));
 
                     paymentAdapter.notifyDataSetChanged();
 
@@ -105,7 +109,7 @@ public class PaymentFragment extends Fragment implements RecyclerViewListener {
             } else {
                 super.onActivityResult(request, result, data);
             }
-        } else if (2 == request) {
+        } else if (CALCULATE_REQUEST == request) {
             super.onActivityResult(request, result, data);
         }
     }
@@ -114,12 +118,12 @@ public class PaymentFragment extends Fragment implements RecyclerViewListener {
         Intent intent = new Intent(getActivity(), AddPayment.class);
         intent.putExtra("tripPosition", tripPosition);
 
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, PAYMENT_REQUEST);
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.id.action_delete, menu);
+        inflater.inflate(R.menu.menu_payment_delete, menu);
     }
 
     @Override
@@ -138,10 +142,10 @@ public class PaymentFragment extends Fragment implements RecyclerViewListener {
     }
 
     public void calculatePayments() {
-        Intent intent = new Intent(getActivity(), AddPayment.class);
+        Intent intent = new Intent(getActivity(), CalculatePayment.class);
         intent.putExtra("tripPosition", tripPosition);
 
-        startActivityForResult(intent, 3);
+        startActivityForResult(intent, CALCULATE_REQUEST);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

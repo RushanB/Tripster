@@ -23,6 +23,33 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentV
     private Context context;
     private RecyclerViewListener listener;
 
+
+    public class PaymentView extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+
+        TextView amountPaid;
+
+        PaymentView(View itemView){
+            super(itemView);
+
+            amountPaid = (TextView) itemView.findViewById(R.id.payment_Amount);
+
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+        }
+
+        public void onClick(View v) {
+            listener.recyclerViewClicked(v, this.getAdapterPosition());
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            listener.recyclerViewClicked(v, this.getAdapterPosition());
+            itemView.showContextMenu();
+
+            return true;
+        }
+    }
+
     public PaymentAdapter(Context context, Trip trip, RecyclerViewListener listener) {
         myTrip = trip;
         this.context = context;
@@ -51,32 +78,6 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentV
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-    }
-
-    public class PaymentView extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        
-        TextView amountPaid;
-
-        PaymentView(View itemView){
-            super(itemView);
-
-            amountPaid = (TextView) itemView.findViewById(R.id.payment_Amount);
-
-            itemView.setOnClickListener(this);
-            itemView.setOnLongClickListener(this);
-        }
-
-        public void onClick(View v) {
-            listener.recyclerViewClicked(v, this.getAdapterPosition());
-        }
-
-        @Override
-        public boolean onLongClick(View v) {
-            listener.recyclerViewClicked(v, this.getAdapterPosition());
-            itemView.showContextMenu();
-
-            return true;
-        }
     }
 
 }

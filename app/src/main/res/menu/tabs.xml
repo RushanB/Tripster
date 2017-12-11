@@ -9,7 +9,7 @@
     <item
         android:id="@+id/tabPayments"
         android:icon="@android:drawable/ic_menu_send"
-        android:title="Payments" />
+        android:title="Budget" />
 
 
 </menu>
