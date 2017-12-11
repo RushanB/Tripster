@@ -26,25 +26,27 @@
             android:layout_height="wrap_content"
             android:id="@+id/placeName"
             android:layout_gravity="center"
-            android:gravity="start"
+            android:gravity="center"
             android:layout_weight="1"
-            android:textSize="42sp"
+            android:textSize="38sp"
             android:hint="Enter Place Name"
             android:textColorHint="@android:color/holo_purple"/>
 
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/placeLocation"
             android:onClick="openPlacePicker"
-            android:gravity="start"
+            android:gravity="center"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:textSize="25sp"
-            android:hint="Enter Place Address"
-            android:textColorHint="@android:color/holo_purple" />
+            android:hint="Select Location"
+            android:textColorHint="@android:color/white" />
 
     </android.support.design.widget.AppBarLayout>
 

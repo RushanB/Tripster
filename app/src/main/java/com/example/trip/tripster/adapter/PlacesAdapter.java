@@ -42,7 +42,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesView
             name = (TextView)itemView.findViewById(R.id.place_Name);
             date = (TextView)itemView.findViewById(R.id.place_Date);
             time = (TextView)itemView.findViewById(R.id.place_Time);
-            cardView = (CardView)itemView.findViewById(R.id.placeCard);
+            cardView = (CardView)itemView.findViewById(R.id.place_Card);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);

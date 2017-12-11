@@ -43,9 +43,9 @@ public class Place implements Serializable {
         endTime = end;
     }
 
-    public Place(String name, String location, GregorianCalendar start, GregorianCalendar end) {
+    public Place(String name, String myLocation, GregorianCalendar start, GregorianCalendar end) {
         placeName = name;
-        placeLocation = location;
+        placeLocation = myLocation;
         startTime = start;
         endTime = end;
     }
