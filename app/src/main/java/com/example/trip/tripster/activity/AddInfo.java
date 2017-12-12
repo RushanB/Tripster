@@ -127,7 +127,7 @@ public class AddInfo extends AppCompatActivity implements
 
     public void updateHeader() {
         if (selectedFragment.getClass().equals(ItemsFragment.class)) {
-            header.setText("Total Events: " + tripToDetail.getItems().size());
+            header.setText("Total Places: " + tripToDetail.getItems().size());
         } else if (selectedFragment.getClass().equals(PaymentsFragment.class)) {
             header.setText("Amount Spent: " + tripToDetail.getTripBudget().getAmountSpent());
         }

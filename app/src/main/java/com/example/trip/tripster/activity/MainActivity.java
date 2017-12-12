@@ -85,8 +85,8 @@ public class MainActivity  extends AppCompatActivity implements RecyclerViewList
         Toolbar myToolbar = (Toolbar)findViewById(R.id.tripActivityToolbar);
         setSupportActionBar(myToolbar);
 
+        setTitle("Tripster");
 
-        setTitle("Trips");
         if (getIntent().hasExtra(newTripNameId) && getIntent().hasExtra(newTripBudgetId)) {
             addTrip(new Trip(getIntent().getStringExtra(newTripNameId),
                     Double.parseDouble((getIntent().getStringExtra(newTripBudgetId)))));
