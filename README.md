@@ -1,5 +1,6 @@
 # Tripster
-Vacation App made in Android Studio - Java
+
+Android application for users all across the world who are currently taking a trip or plan on taking a trip. Users can plan out the places they want to go to and find where it is located. Users can also monitor their budget for a trip.
 
 ## Timeline
 
