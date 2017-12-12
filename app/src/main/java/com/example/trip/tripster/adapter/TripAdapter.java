@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.trip.tripster.R;
 import com.example.trip.tripster.RecyclerViewListener;
-import com.example.trip.tripster.activity.TripInfo;
+import com.example.trip.tripster.activity.AddInfo;
 import com.example.trip.tripster.model.Trip;
 
 import java.util.List;
@@ -20,75 +20,76 @@ import java.util.List;
  * Created by rush on 2017-12-06.
  */
 
-public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripView> {
 
-    private List<Trip> tripList;
-    private RecyclerViewListener listener;
-    private Context context;
-    private static final String TAG = "";
+public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
 
-    public class TripView extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+private List<Trip> trips;
+private Context context;
+private RecyclerViewListener itemListener;
 
-        TextView name;
-        TextView budget;
-        CardView cardView;
+private static final String TAG = "";
 
-        TripView(View itemView) {
-            super(itemView);
+public class TripViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    CardView cvTrip;
+    TextView tripName;
+    TextView tripBudget;
 
-            name = (TextView)itemView.findViewById(R.id.trip_Name);
-            budget = (TextView)itemView.findViewById(R.id.trip_Budget);
-            cardView = (CardView)itemView.findViewById(R.id.tripCard);
-
-            itemView.setOnClickListener(this);
-            itemView.setOnLongClickListener(this);
-        }
-
-        public void onClick(View v) {
-            listener.recyclerViewClicked(v, this.getAdapterPosition());
-
-            Intent intent = new Intent(context, TripInfo.class);
-            intent.putExtra("tripPosition", (Integer)getAdapterPosition());
-            context.startActivity(intent);
-        }
-
-        @Override
-        public boolean onLongClick(View v) {
-            listener.recyclerViewClicked(v, this.getAdapterPosition());
-            itemView.showContextMenu();
-
-            return true;
-        }
+    TripViewHolder(View itemView) {
+        super(itemView);
+        cvTrip = (CardView) itemView.findViewById(R.id.cvTrip);
+        tripName = (TextView) itemView.findViewById(R.id.trip_name);
+        tripBudget = (TextView) itemView.findViewById(R.id.trip_budget);
+        itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
-    public TripAdapter(Context context, List<Trip> tripList, RecyclerViewListener listener) {
+    public void onClick(View v) {
+        itemListener.recyclerViewClicked(v, this.getAdapterPosition());
+        Intent tripDetailsIntent = new Intent(context, AddInfo.class);
+        tripDetailsIntent.putExtra("tripPosition", (Integer)getAdapterPosition());
+
+        context.startActivity(tripDetailsIntent);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        itemListener.recyclerViewClicked(v, this.getAdapterPosition());
+        itemView.showContextMenu();
+        return true;
+    }
+}
+
+    public TripAdapter(Context context, List<Trip> trips, RecyclerViewListener itemListener) {
         this.context = context;
-        this.listener = listener;
-        this.tripList = tripList;
+        this.itemListener = itemListener;
+        this.trips = trips;
     }
 
+    //Create new views
     @Override
-    public TripView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_trip, parent, false);
-
-        return new TripView(v);
+    public TripViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(
+                R.layout.content_trip, viewGroup, false);
+        return new TripViewHolder(v);
     }
 
+    //Replace the contents of a view
     @Override
-    public void onBindViewHolder(TripView holder, int position) {
-        String myBudget = "Budget: " + Double.toString(tripList.get(position).getTripBudget().getTotalCost());
-
-        holder.name.setText(tripList.get(position).getTripName());
-        holder.budget.setText(myBudget);
-    }
-
-    @Override
-    public int getItemCount() {
-        return tripList.size();
+    public void onBindViewHolder(TripViewHolder tripViewHolder, int i) {
+        String budgetToSet = "Budget: " + Double.toString(
+                trips.get(i).getTripBudget().getMaxBudget());
+        tripViewHolder.tripName.setText(trips.get(i).getTripName());
+        tripViewHolder.tripBudget.setText(budgetToSet);
     }
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    //Return the size of your data
+    @Override
+    public int getItemCount() {
+        return trips.size();
     }
 }

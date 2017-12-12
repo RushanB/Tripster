@@ -17,62 +17,61 @@ import com.example.trip.tripster.model.Trip;
  * Created by rush on 2017-12-08.
  */
 
-public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentView> {
+public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentViewHolder> {
 
-    private final Trip myTrip;
+
+    private final Trip tripToDetail;
+    private RecyclerViewListener itemListener;
+
     private Context context;
-    private RecyclerViewListener listener;
 
-
-    public class PaymentView extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    public class PaymentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         TextView amountPaid;
+        TextView reasonPaid;
 
-        PaymentView(View itemView){
+        PaymentViewHolder(View itemView) {
             super(itemView);
 
             amountPaid = (TextView) itemView.findViewById(R.id.payment_Amount);
+            reasonPaid = (TextView) itemView.findViewById(R.id.payment_Reason);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
 
         public void onClick(View v) {
-            listener.recyclerViewClicked(v, this.getAdapterPosition());
+            itemListener.recyclerViewClicked(v, this.getAdapterPosition());
         }
 
         @Override
         public boolean onLongClick(View v) {
-            listener.recyclerViewClicked(v, this.getAdapterPosition());
+            itemListener.recyclerViewClicked(v, this.getAdapterPosition());
             itemView.showContextMenu();
-
             return true;
         }
     }
 
-    public PaymentAdapter(Context context, Trip trip, RecyclerViewListener listener) {
-        myTrip = trip;
+    public PaymentAdapter(Context context, Trip trip, RecyclerViewListener itemListener) {
         this.context = context;
-        this.listener = listener;
+        this.itemListener = itemListener;
+        tripToDetail = trip;
     }
 
-
+    //Create new views
     @Override
-    public PaymentView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_payment, parent, false);
-
-        return new PaymentView(v);
+    public PaymentViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(
+                R.layout.content_payment, viewGroup, false);
+        return new PaymentViewHolder(v);
     }
 
+    //Replace the contents of a view
     @Override
-    public void onBindViewHolder(PaymentView holder, int position) {
-        Payment payment = (Payment) myTrip.getTripBudget().getPayments().get(position);
-        holder.amountPaid.setText(Double.toString(payment.getTotal()));
-    }
-
-    @Override
-    public int getItemCount() {
-        return myTrip.getTripBudget().getPayments().size();
+    public void onBindViewHolder(PaymentViewHolder paymentViewHolder, int i) {
+        Payment p = (Payment) tripToDetail.getTripBudget().getPayments().get(i);
+        paymentViewHolder.amountPaid.setText(Double.toString(p.getAmount()));
+        paymentViewHolder.reasonPaid.setText(p.getReason());
     }
 
     @Override
@@ -80,4 +79,9 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentV
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+    //Return the size of your data
+    @Override
+    public int getItemCount() {
+        return tripToDetail.getTripBudget().getPayments().size();
+    }
 }

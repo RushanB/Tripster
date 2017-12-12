@@ -5,51 +5,53 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 /**
- * Created by rush on 2017-12-06.
+ * Created by rush on 2017-12-11.
  */
 
 public class Trip implements Serializable {
 
-    private static final long serialVersionUID = 56L;
     private String tripName;
     private Budget tripBudget;
     private String tripLocation;
-    private ArrayList<Place> myPlaces;
+    private ArrayList<Item> items;
 
-    public Trip(String name, double total) {
+    private static final long serialVersionUID = 56L;
+
+    public Trip(String name, double maxBudget) {
         tripName = name;
-        tripBudget = new Budget(total);
-        myPlaces = new ArrayList<Place>();
+        tripBudget = new Budget(maxBudget);
+        items = new ArrayList<Item>();
     }
 
-    public Trip(String name, double total, String location) {
+    public Trip(String name, double maxBudget, String targetLocation) {
         tripName = name;
-        tripBudget = new Budget(total);
-        tripLocation = location;
-        myPlaces = new ArrayList<Place>();
+        tripBudget = new Budget(maxBudget);
+        tripLocation = targetLocation;
+        items = new ArrayList<Item>();
     }
 
-    public Budget getTripBudget() {
-        return tripBudget;
+    public void addItem(String name) {
+        items.add(new Item(name));
+    }
+
+    public void addItem(String name, GregorianCalendar start, GregorianCalendar end) {
+        items.add(new Item(name, start, end));
+    }
+
+    public void addItem(String name, String placeId, GregorianCalendar start, GregorianCalendar end) {
+        items.add(new Item(name, placeId, start, end));
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
     public String getTripName() {
         return tripName;
     }
 
-    public ArrayList<Place> getMyPlaces() {
-        return myPlaces;
+    public Budget getTripBudget() {
+        return tripBudget;
     }
 
-    public void addPlace(String name) {
-        myPlaces.add(new Place(name));
-    }
-
-    public void addPlace(String name, GregorianCalendar startDate, GregorianCalendar endDate) {
-        myPlaces.add(new Place(name, startDate, endDate));
-    }
-
-    public void addPlace(String name, String placeId, GregorianCalendar startDate, GregorianCalendar endDate) {
-        myPlaces.add(new Place(name, placeId, startDate, endDate));
-    }
 }

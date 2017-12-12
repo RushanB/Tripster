@@ -1,48 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/appBar"
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:background="@color/colorPrimary"
+        android:background="?attr/colorPrimary"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
+
+
         <android.support.v7.widget.Toolbar
+            android:id="@+id/tripActivityToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/mainToolbar"
             android:background="@color/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+
+            />
 
     </android.support.design.widget.AppBarLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/addButton"
-        android:onClick="newTrip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:src="@android:drawable/ic_input_add"
-        android:elevation="6dp"
-        app:fabSize="normal"
-        android:tint="@android:color/white"
-        app:backgroundTint="@color/colorPrimary"
-        android:layout_margin="20dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/myTrips"
-        android:clickable="true"
+        android:id="@+id/rvTrips"
         android:padding="0dp"
-        android:layout_below="@+id/appBar"
-        android:layout_alignParentStart="true"/>
+        android:layout_below="@+id/appbar"
+        android:clickable="true"
+        android:layout_alignParentStart="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventButton"
+        android:layout_gravity="bottom"
+        android:clickable="true"
+        app:fabSize="normal"
+        android:tint="@android:color/white"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_margin="20dp"
+        android:elevation="6dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="createTrip"/>
 
 </RelativeLayout>

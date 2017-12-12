@@ -14,38 +14,39 @@ import com.example.trip.tripster.R;
 
 public class AddTrip extends AppCompatActivity {
 
-    TextView nameTextF;
-    TextView budgetTextF;
-    Toolbar toolbar;
+    Toolbar myToolbar;
+    TextView tripNameField;
+    TextView tripBudgetField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_trip);
 
-        nameTextF = (TextView) findViewById(R.id.tripName);
-
-        budgetTextF = (TextView) findViewById(R.id.tripBudget);
-
-        toolbar = (Toolbar) findViewById(R.id.addTripToolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //toolbar
+        myToolbar = (Toolbar) findViewById(R.id.createTripToolbar);
+        setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        tripNameField = (TextView)findViewById(R.id.Title);
+        tripBudgetField = (TextView)findViewById(R.id.Budget);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-    public boolean newTrip(MenuItem menuItem) {
-        if (nameTextF.getText().toString().matches("")) {
-            Toast.makeText(this, "Invalid Name", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (budgetTextF.getText().toString().matches("")) {
-            Toast.makeText(this, "Invalid Budget", Toast.LENGTH_SHORT).show();
-            return false;
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.save) {
+            return true;
         }
-        finish();
-        return true;
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -55,26 +56,32 @@ public class AddTrip extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int myId = item.getItemId();
-        if(myId == R.id.save) {
-            return true;
+    public boolean createTrip(MenuItem menu) {
+        if (tripNameField.getText().toString().matches("")) {
+            Toast.makeText(this, "Invalid Name", Toast.LENGTH_SHORT).show();
+
+            return false;
+        } else if (tripBudgetField.getText().toString().matches("")) {
+            Toast.makeText(this, "Invalid Budget", Toast.LENGTH_SHORT).show();
+
+            return false;
         }
-        return super.onOptionsItemSelected(item);
+        finish();
+        return true;
     }
 
     @Override
     public void finish() {
-        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+        Intent returnIntent = new Intent(getBaseContext(), MainActivity.class);
 
-        if (!nameTextF.getText().toString().matches("") && !budgetTextF.getText().toString().matches("")) {
-            intent.putExtra("NameTextF", nameTextF.getText().toString());
-            intent.putExtra("BudgetTextF", budgetTextF.getText().toString());
+        if (!tripNameField.getText().toString().matches("") && !tripBudgetField.getText().toString().matches("")) {
 
-            setResult(RESULT_OK, intent);
+            returnIntent.putExtra("TripNameField", tripNameField.getText().toString());
+            returnIntent.putExtra("TripBudgetField", tripBudgetField.getText().toString());
+
+            setResult(RESULT_OK, returnIntent);
         } else {
-            setResult(RESULT_CANCELED, intent);
+            setResult(RESULT_CANCELED, returnIntent);
         }
         super.finish();
     }

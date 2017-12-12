@@ -3,6 +3,7 @@
     package="com.example.trip.tripster">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    >
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -18,17 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.AddTrip"
-            android:label="Tripster"
+            android:label="@string/app_name"
             android:parentActivityName=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".activity.AddPlace"
             android:label="@string/app_name">
@@ -36,7 +34,6 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.AddPayment"
             android:label="@string/app_name">
@@ -44,16 +41,21 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".activity.TripInfo"
-            android:label="TripInfo"
-            android:parentActivityName=".activity.MainActivity">
+            android:name=".activity.AddInfo"
+            android:label="@string/app_trip_info"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.CalculatePayment"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDU-pbyDpUVyRSLuLIDEBulQXnUIXK1eew" />
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

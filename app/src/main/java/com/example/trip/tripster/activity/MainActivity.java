@@ -28,88 +28,137 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewListener {
+public class MainActivity  extends AppCompatActivity implements RecyclerViewListener {
 
-    public static final String fileName = "trips";
-    private Trips trips;
-    private String tripNameId = "NameTextF";
-    private String tripBudgetId = "BudgetTextF";
-    private RecyclerView tripRecycler;
+    private static final String newTripNameId = "TripNameField";
+    private static final String newTripBudgetId = "TripBudgetField";
+    private RecyclerView tripRecyclerView;
     private RecyclerView.Adapter tripAdapter;
     private int adapterPosition;
-    private ArrayList<Trip> tripArrayList;
-    public static final int TRIP_REQUEST = 1;
+
+    public static final int CREATE_TRIP_REQUEST = 1;
+    public static final String fileName = "trips";
+    private ArrayList<Trip> tripList;
+    private Trips trips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        registerForContextMenu(findViewById(R.id.myTrips));
+        registerForContextMenu(findViewById(R.id.rvTrips));
+        tripList = new ArrayList<>();
 
-        tripArrayList = new ArrayList<>();
         try {
             File file = new File(this.getFilesDir(), fileName);
             if (file == null || !file.exists()) {
                 FileOutputStream fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
-                Trip first = new Trip("European Adventure", 1200.0);
-                Trip second = new Trip("The Grand Canyon", 500.0);
-                tripArrayList.add(first);
-                tripArrayList.add(second);
 
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-                objectOutputStream.writeObject(tripArrayList);
+                //create two new trips
+                Trip firstTrip = new Trip("European Adventure", 1200);
+                Trip secondTrip = new Trip("The Grand Canyon", 800);
+                tripList.add(firstTrip);
+                tripList.add(secondTrip);
+
+                ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
+                oos.writeObject(tripList);
 
                 fileOutputStream.close();
-                objectOutputStream.close();
+                oos.close();
             } else {
                 FileInputStream fileInputStream = openFileInput(fileName);
-                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
-                tripArrayList = (ArrayList<Trip>) objectInputStream.readObject();
-
+                ObjectInputStream ois = new ObjectInputStream(fileInputStream);
+                tripList = (ArrayList<Trip>) ois.readObject();
                 fileInputStream.close();
-                objectInputStream.close();
+                ois.close();
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Invalid Trip 1", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Invalid Trip", Toast.LENGTH_SHORT).show();
             Log.e("", "exception", e);
         }
-        //set instance of trips
+        //Set up singleton
         trips = Trips.getInstance();
-        trips.setTripArrayList(tripArrayList);
 
-        //set toolbar
-        Toolbar toolbar;
-        toolbar = (Toolbar)findViewById(R.id.mainToolbar);
-        setSupportActionBar(toolbar);
+        trips.setTripList(tripList);
 
-        //Set title
-        setTitle("My Trips");
+        //Toolbar
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.tripActivityToolbar);
+        setSupportActionBar(myToolbar);
 
-        if(getIntent().hasExtra(tripNameId) && getIntent().hasExtra(tripBudgetId)) {
-            addTrip(new Trip(getIntent().getStringExtra(tripNameId),Double.parseDouble((getIntent().getStringExtra(tripBudgetId)))));
+
+        setTitle("Trips");
+        if (getIntent().hasExtra(newTripNameId) && getIntent().hasExtra(newTripBudgetId)) {
+            addTrip(new Trip(getIntent().getStringExtra(newTripNameId),
+                    Double.parseDouble((getIntent().getStringExtra(newTripBudgetId)))));
         }
-        //set recycler view
-        tripRecycler = (RecyclerView) findViewById(R.id.myTrips);
-        tripRecycler.setHasFixedSize(false);
+
+        //create the recyclerview
+        tripRecyclerView = (RecyclerView) findViewById(R.id.rvTrips);
+        //improves performance
+        //do not change the layout size of the RecyclerView
+        tripRecyclerView.setHasFixedSize(false);
         //linear layout manager
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        tripRecycler.setLayoutManager(layoutManager);
-        //set adapter
-        tripAdapter = new TripAdapter(getBaseContext(), tripArrayList, this);
-        tripRecycler.setAdapter(tripAdapter);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        tripRecyclerView.setLayoutManager(llm);
+
+        //specify an adapter
+        tripAdapter = new TripAdapter(getBaseContext(), tripList, this);
+        tripRecyclerView.setAdapter(tripAdapter);
+    }
+
+    public void createTrip(View view) {
+        //Set up return intents
+        Intent createTripIntent = new Intent(this, AddTrip.class);
+        startActivityForResult(createTripIntent, CREATE_TRIP_REQUEST);
+    }
+
+    public void addTrip(Trip tripToAdd) {
+        tripList.add(tripToAdd);
+        tripAdapter.notifyDataSetChanged();
+        updateTrips();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
-    protected void onActivityResult(int request, int result, Intent data) {
-        super.onActivityResult(request,result,data);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_trips, menu);
+        return true;
+    }
 
-        if(request == TRIP_REQUEST && result == RESULT_OK) {
-            if (data.hasExtra(tripNameId) && data.hasExtra(tripBudgetId)) {
-                addTrip(new Trip(data.getStringExtra(tripNameId), Double.parseDouble((data.getStringExtra(tripBudgetId)))));
-            }
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_action_trip, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_delete) {
+
+            tripList.remove(adapterPosition);
+            updateTrips();
+            tripAdapter.notifyDataSetChanged();
+
+            return true;
         }
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -117,73 +166,34 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewListe
         adapterPosition = position;
     }
 
-    public void newTrip(View v) {
-        //set return intents
-        Intent newTripIntent = new Intent(this, AddTrip.class);
-        startActivityForResult(newTripIntent, TRIP_REQUEST);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CREATE_TRIP_REQUEST && resultCode == RESULT_OK) {
+
+            if (data.hasExtra(newTripNameId) && data.hasExtra(newTripBudgetId)) {
+
+                addTrip(new Trip(data.getStringExtra(newTripNameId),
+                        Double.parseDouble((data.getStringExtra(newTripBudgetId)))));
+            }
+        }
     }
 
-    public void addTrip(Trip newTrip) {
-        tripArrayList.add(newTrip);
-        tripAdapter.notifyDataSetChanged();
-        updateTripList();
-    }
-
-    public void updateTripList() {
+    public void updateTrips() {
         try {
             FileOutputStream fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(tripArrayList);
-
-            Trips.getInstance().setTripArrayList(tripArrayList);
+            ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
+            oos.writeObject(tripList);
+            Trips.getInstance().setTripList(tripList);
 
             fileOutputStream.close();
-            objectOutputStream.close();
+            oos.close();
+
         } catch (Exception e) {
-            Toast.makeText(this, "Invalid Trip 2", Toast.LENGTH_SHORT).show();
-            Log.e("","exception", e);
+            Toast.makeText(this, "Invalid Trip", Toast.LENGTH_SHORT).show();
+
+            Log.e("", "exception", e);
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_trips, menu);
-
-        return true;
-    }
-
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_trips_delete, menu);
-    }
-
-    //Automatically handle clicks
-    @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-        int id = menuItem.getItemId();
-        if(id == R.id.settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(menuItem);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem menuItem) {
-        int id = menuItem.getItemId();
-        if(id == R.id.action_delete) {
-
-            tripArrayList.remove(adapterPosition);
-
-            updateTripList();
-
-            tripAdapter.notifyDataSetChanged();
-
-            return true;
-        }
-        return super.onContextItemSelected(menuItem);
-    }
-
-
 }

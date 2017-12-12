@@ -6,9 +6,10 @@
     android:padding="2dp">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cvEvents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/place_Card"
+        android:foreground="?android:attr/selectableItemBackground"
         card_view:cardElevation="2dp"
         card_view:cardCornerRadius="2dp"
         card_view:cardUseCompatPadding="true"
@@ -24,25 +25,25 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/place_Name"
+                android:id="@+id/event_Name"
                 android:layout_alignParentTop="true"
-                android:textSize="27sp"
+                android:textSize="25sp"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/place_Date"
+                android:id="@+id/Date"
                 android:textSize="15sp"
-                android:layout_below="@id/place_Name"
+                android:layout_below="@id/event_Name"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/place_Time"
+                android:id="@+id/Time"
                 android:textSize="15sp"
-                android:layout_below="@id/place_Date"
+                android:layout_below="@id/Date"
                 />
 
         </RelativeLayout>
