@@ -15,7 +15,7 @@ Home Screen & Adding A Trip
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/2.0%20-%20Adding%20Trip.png" width="300" height="500">
 </p>
 
-My Places
+Adding A Place (Google Places API) & Viewing In Places Tab
 
 <p float="left">
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/3.0%20-%20Adding%20Place.png" width="200" height="350">
@@ -25,7 +25,7 @@ My Places
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/4.0%20-%20Confirming%20Details.png" width="200" height="350">
  </p> 
   
-My Budget
+Adding A Budget & Viewing In Budget Tab
 
 <p float="left">
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/5.0%20-%20Place%20Added.png" width="300" height="500">
