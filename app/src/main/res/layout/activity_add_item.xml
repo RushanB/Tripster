@@ -35,10 +35,9 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="40sp"
+            android:textSize="20sp"
             android:background="@color/colorPrimary"
-            android:hint="Enter Place Name"
-            android:paddingBottom="10dp"/>
+            android:hint="Enter Place Name" />
 
     </android.support.design.widget.AppBarLayout>
 

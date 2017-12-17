@@ -54,11 +54,11 @@ public class MainActivity  extends AppCompatActivity implements RecyclerViewList
             if (file == null || !file.exists()) {
                 FileOutputStream fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
 
-                //create two new trips
-                Trip firstTrip = new Trip("European Adventure", 1200);
-                Trip secondTrip = new Trip("The Grand Canyon", 800);
-                tripList.add(firstTrip);
-                tripList.add(secondTrip);
+                //TESTING®
+//                Trip firstTrip = new Trip("European Adventure", 1200);
+//                Trip secondTrip = new Trip("The Grand Canyon", 800);
+//                tripList.add(firstTrip);
+//                tripList.add(secondTrip);
 
                 ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
                 oos.writeObject(tripList);
