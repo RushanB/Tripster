@@ -8,7 +8,26 @@ Started the initial research research and began on November 15th at 10:00 AM. Th
 
 ### Demo Images
 
-Coming Soon
+Home Screen & Adding A Trip
+
+<p float="left">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/1.0%20-%20Home%20Screen.png" width="300" height="500"> 
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/2.0%20-%20Adding%20Trip.png" width="300" height="500">
+</p>
+
+My Places
+
+<p float="left">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.0%20-%20Adding%20Place.png" width="300" height="500">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.1%20-%20Confirming%20Place.png" width="300" height="500">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.2%20-%20Adding%20Date.png" width="300" height="500">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.3%20-%20Adding%20Time.png" width="300" height="500">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/4.0%20-%20Confirming%20Details.png" width="300" height="500">
+  
+My Budget
+
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/5.0%20-%20Place%20Added.png" width="300" height="500">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/7.0%20-%20Budget%20Added.png" width="300" height="500">
 
 ## User Case
 
