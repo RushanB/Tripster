@@ -11,24 +11,30 @@ Started the initial research research and began on November 15th at 10:00 AM. Th
 Home Screen & Adding A Trip
 
 <p float="left">
-<img src="https://github.com/RushanB/Tripster/blob/master/Images/1.0%20-%20Home%20Screen.png" width="300" height="500"> 
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/2.0%20-%20Adding%20Trip.png" width="300" height="500">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/1.0%20-%20Home%20Screen.png" width="300" height="500"> 
 </p>
 
-Adding A Place (Google Places API) & Viewing In Places Tab
+Adding A Place (Google Places API)
 
 <p float="left">
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/3.0%20-%20Adding%20Place.png" width="200" height="350">
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/3.1%20-%20Confirming%20Place.png" width="200" height="350">
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/3.2%20-%20Adding%20Date.png" width="200" height="350">
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/3.3%20-%20Adding%20Time.png" width="200" height="350">
-<img src="https://github.com/RushanB/Tripster/blob/master/Images/4.0%20-%20Confirming%20Details.png" width="200" height="350">
+ </p>
+ 
+ Viewing In Places Tab
+ 
+ <p float="left">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/4.0%20-%20Confirming%20Details.png" width="300" height="500">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/5.0%20-%20Place%20Added.png" width="300" height="500">
  </p> 
   
 Adding A Budget & Viewing In Budget Tab
 
 <p float="left">
-<img src="https://github.com/RushanB/Tripster/blob/master/Images/5.0%20-%20Place%20Added.png" width="300" height="500">
+<img src=" https://github.com/RushanB/Tripster/blob/master/Images/6.0%20-%20Adding%20Budget.png" width="300" height="500">
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/7.0%20-%20Budget%20Added.png" width="300" height="500">
 </p>
 
