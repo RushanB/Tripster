@@ -34,7 +34,7 @@ Adding A Place (Google Places API)
 Adding A Budget & Viewing In Budget Tab
 
 <p float="left">
-<img src=" https://github.com/RushanB/Tripster/blob/master/Images/6.0%20-%20Adding%20Budget.png" width="300" height="500">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/6.0%20-%20Adding%20Budget.png" width="300" height="500">
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/7.0%20-%20Budget%20Added.png" width="300" height="500">
 </p>
 
