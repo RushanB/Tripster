@@ -1,12 +1,12 @@
-# Tripster
+# ![](https://github.com/RushanB/Tripster/blob/master/AppIcon/ios/AppIcon.appiconset/Icon-App-20x20%403x.png)Tripster
 
 Android application for users all across the world who are currently taking a trip or plan on taking a trip. Users can plan out the places they want to go to and find where it is located. Users can also monitor their budget for a trip.
 
-## Timeline
+### Timeline
 
 Started the initial research research and began on November 15th at 10:00 AM. The app was finished on December 12th at 10:00 AM.
 
-## Demo Images
+### Demo Images
 
 Coming Soon
 
