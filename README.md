@@ -18,16 +18,19 @@ Home Screen & Adding A Trip
 My Places
 
 <p float="left">
-<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.0%20-%20Adding%20Place.png" width="300" height="500">
-<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.1%20-%20Confirming%20Place.png" width="300" height="500">
-<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.2%20-%20Adding%20Date.png" width="300" height="500">
-<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.3%20-%20Adding%20Time.png" width="300" height="500">
-<img src="https://github.com/RushanB/Tripster/blob/master/Images/4.0%20-%20Confirming%20Details.png" width="300" height="500">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.0%20-%20Adding%20Place.png" width="200" height="300">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.1%20-%20Confirming%20Place.png" width="200" height="300">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.2%20-%20Adding%20Date.png" width="200" height="300">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/3.3%20-%20Adding%20Time.png" width="200" height="300">
+<img src="https://github.com/RushanB/Tripster/blob/master/Images/4.0%20-%20Confirming%20Details.png" width="200" height="300">
+ </p> 
   
 My Budget
 
+<p float="left">
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/5.0%20-%20Place%20Added.png" width="300" height="500">
 <img src="https://github.com/RushanB/Tripster/blob/master/Images/7.0%20-%20Budget%20Added.png" width="300" height="500">
+</p>
 
 ## User Case
 
