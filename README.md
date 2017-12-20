@@ -40,7 +40,7 @@ Adding A Budget & Viewing In Budget Tab
 
 ## User Case
 
-The user is able to add a current or future Trip. The tripp will automically generate a Places tab and a Budget tab. The user can add multiple Places using Google Places API and input a starting time and an ending time for the duration of that place using MaterialDateTimePicker. The user can also monitor their spending through the Budget tab where they can add multiple items with an amount and a reason as to why they spent that amount. 
+The user is able to add a current or future Trip. The trip will automically generate a Places tab and a Budget tab. The user can add multiple Places using Google Places API and input a starting time and an ending time for the duration of that place using MaterialDateTimePicker. The user can also monitor their spending through the Budget tab where they can add multiple items with an amount and a reason as to why they spent that amount. 
 
 ## Future Goals
 - Include Navigation system to get time it takes to get from one place to the next.
